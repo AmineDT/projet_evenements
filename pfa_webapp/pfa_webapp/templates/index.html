@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untitled Document</title>
+<link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="wrapper">
+<header id="header">
+<div id="logo"><img src="{% static 'img/logo.png' %}" alt=""/></div>
+<div id="topbanner"><img src="{% static 'img/logo.png' %}" width="800" height="200" alt=""/></div>
+</header>
+<aside id="leftsidebar">
+<nav id="nav">
+<ul>
+<li>Menu 1</li>
+<li>Menu 2</li>
+<li>Menu 3</li>
+</ul>
+</nav>
+</aside>
+<section id="main">
+<h1>Welcome!</h1>
+<p>This is the site template</p>
+</section>
+<footer id="footer">Copyright &copy; 2018 LPGLAASRI WebDesign</footer>
+</div>
+</body>
+</html>
