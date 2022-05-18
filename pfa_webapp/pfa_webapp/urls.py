@@ -22,5 +22,14 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('contact/', views.contact, name="contact"),
     path('about/', views.about, name="about"),
+    path('billets/', include('billets.urls')),
+    path('etudiants/', include('etudiants.urls')),
+    path('evenements/', include('evenements.urls')),
+    path('labels/', include('labels.urls')),
+    path('membres/', include('membres.urls')),
+    path('roles/', include('roles.urls')),
+    path('tresorerie/', include('tresorerie.urls')),
+    path('utilisateurs/', include('utilisateurs.urls')),
+
 
 ]
