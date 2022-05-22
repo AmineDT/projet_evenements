@@ -1,23 +1,21 @@
 import sys
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+import requests
 import os
+from django.template import RequestContext
 
-
-
+from .models import Label
 # Create your views here.
 
-def index_labels(requests):
-    return render(requests, "Labels_templates/Labels.html")
 
-"""def addlabel(request):
+def index_labels(request):
     if request.method == "POST":
-        postlabel = Label()
-        postlabel.name_label = request.POST.get('name_label')
-        postlabel.description = request.POST.get('description_label')
-        postlabel.save()
-        return render(request, 'Label.html')
+        name_label = request.POST['name_label']
+        description = request.POST['description']
+        data = Label(name_label=name_label, description=description)
+        data.save()
 
+        return render(request, 'Labels_templates/Labels.html')
     else:
-        return render(request, 'Label.html')"""
-
+        return render(request, 'Labels_templates/Labels.html')
 
