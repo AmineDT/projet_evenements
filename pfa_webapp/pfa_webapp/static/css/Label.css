@@ -197,9 +197,10 @@
 }
 
 .u-section-1 .u-form-1 {
-  height: 601px;
-  width: 570px;
-  margin: 32px auto 0;
+  font-weight: 700;
+  height: 901px;
+  width: 770px;
+  margin: 52px auto 0;
 }
 
 .u-section-1 .u-label-1 {
@@ -262,7 +263,9 @@
   }
 
   .u-section-1 .u-form-1 {
-    width: 516px;
+    margin: auto;
+    font-weight: 700;
+    width: 816px;
   }
 }
 
@@ -297,6 +300,8 @@
   }
 
   .u-section-1 .u-form-1 {
-    width: 320px;
+    font-weight: 700;
+    width: 620px;
   }
 }
+

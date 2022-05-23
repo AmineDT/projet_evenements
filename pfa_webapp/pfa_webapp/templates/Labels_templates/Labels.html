@@ -1,6 +1,34 @@
 {% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
+<style>
+input[type=text], select {
+  width: 160%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 150%;
+  background-color: #478ac9;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form {
+    position: absolute;
+    margin-top: 25%;
+}
+</style>
+<body>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -19,7 +47,7 @@
 		"@type": "Organization",
 		"name": "",
 		"logo": "{% static 'img/logo.png' %}"
-}</script>
+}   </script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Label">
     <meta property="og:type" content="website">
@@ -114,43 +142,32 @@
                   <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
                     <div class="u-container-layout u-valign-middle u-container-layout-11">
                       <h1 class="u-align-center u-text u-text-1">Création d'un nouveau label</h1>
-                        <form method="POST">
-        {% csrf_token %}
-        <table style="width:50%" align="center">
-            <tr>
-                <td>Nom label</td>
-                <td><input type="text" placeholder="Entrez nom du label" name="name_label" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"></td>
-            </tr>
-            <tr>
-                <td>Description du label</td>
-                <td><input type="text" placeholder="Entrez une description du label" name="description" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
-            </tr>
-        </table>
-    </form>
                     </div>
                   </div>
                   <div class="u-form u-form-1">
-                    <form action="" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-                      <div class="u-form-group u-form-name">
-                        <label for="name-46fd" class="u-label u-label-1">Nom label</label>
-                        <input type="text" placeholder="Entrez le nom du label" id="name-46fd" name="name_label" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                      </div>
-                      <div class="u-form-group u-form-group-2">
-                        <label for="text-8990" class="u-label u-label-2">Description label</label>
-                        <input type="text" placeholder="Entrez une description" id="text-8990" name="description" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                      </div>
-
-                      <div class="u-align-left u-form-group u-form-submit">
-                        <a href="{% url 'index_labels' %}" class="u-btn u-btn-submit u-button-style">Soumettre</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
-                      </div>
-                      <div class="u-form-send-message u-form-send-success"> Je vous remercie! Votre message a été envoyé. </div>
-                      <div class="u-form-send-error u-form-send-message"> Impossible d'envoyer votre message. Veuillez corriger les erreurs puis réessayer. </div>
-                      <input type="hidden" value="" name="recaptchaResponse">
-                    </form>
+                      <form id = "form_label" method="POST">
+                        {% csrf_token %}
+                          {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <h1 style="color: green" align="center"><b>
+                             {{ message }}
+                                </b></h1>
+                            </div>
+                          {% endfor %}
+                        <table style="width:100%" align="center">
+                         <tr>
+                            <td><b><h3>Nom label</h3></b></td>
+                            <td><b><input type="text" placeholder="Entrez nom du label" name="name_label" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"></td></b>
+                         </tr>
+                         <tr>
+                            <td><b><h3>Description du label</h3></b></td>
+                            <td><b><input type="text" placeholder="Entrez une description du label" name="description" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></td></b>
+                         </tr>
+                         <tr>
+                            <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
+                         </tr>
+                        </table>
+                      </form>
                   </div>
                 </div>
               </div>
