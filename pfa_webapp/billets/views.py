@@ -20,7 +20,7 @@ def index_billets(request):
     if request.method == "POST":
         event = Events.objects.filter(pk=request.POST.get('event_select', '')).first()
         student = Students.objects.filter(pk=request.POST.get('student_select', '')).first()
-        data = Events(id_event=event, id_student=student)
+        data = Tickets(id_event=event, id_student=student)
         data.save()
         messages.success(request, 'Billet ajouté avec succès.')
 
