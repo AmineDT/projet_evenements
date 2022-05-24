@@ -22,6 +22,6 @@ def index_etudiants(request):
         data.save()
         messages.success(request, 'Etudiant ajouté avec succès.')
 
-        return render(request, 'Students_templates/Students.html')
+        return render(request, 'Students_templates/Students_editer.html')
     else:
         return render(request, 'Students_templates/Students.html')

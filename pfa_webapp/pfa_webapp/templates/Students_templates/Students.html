@@ -1,11 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
+<style>
+input[type=text], input[type=number], input[type=date], input[type=email] {
+  width: 160%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input, select {
+  width: 160%;
+  background-color: #FFFFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+form {
+    position: absolute;
+    margin-top: 25%;
+}
+</style>
+
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="Page événements">
+    <meta name="keywords" content="Students">
+    <meta name="description" content="Page étudiants">
     <title>Events</title>
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
@@ -72,7 +100,7 @@
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-2">
                         <div class="u-container-layout u-similar-container u-container-layout-3">
-                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
+                          <a href="{% url 'index_billets' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-3">
@@ -136,7 +164,7 @@
                         <label for="name-46fe" class="u-label u-label-3">Prénom étudiant</label>
                         <input type="text" placeholder="Entrez le prénom de l'étudiant" id="name-46fe" name="surname_student" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
                       </div>
-                      <div class="custom-select" style="width:300px; height:50px">
+                      <div class="select">
                         <label for="fields" class="u-label u-label-4">Spécialité</label>
                         <select name="study_field" id="fields">
                         <option value="Sciences de la santé">Sciences de la santé</option>
@@ -152,7 +180,7 @@
                       </div>
                       <div class="u-form-group u-form-group-6">
                         <label for="text-8990" class="u-label u-label-6">Téléphone</label>
-                        <input type="number" placeholder="Entrez le numéro de téléphone" id="text-8990" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <input type="text" placeholder="Entrez le numéro de téléphone" id="text-8990" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                       </div>
                       <div class="u-align-left u-form-group u-form-submit">
                         <a href="" class="u-btn u-btn-submit u-button-style">Soumettre</a>

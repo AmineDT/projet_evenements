@@ -24,15 +24,16 @@ input, select {
 }
 
 form {
-    position: absolute;
+    position: center;
+    width: border-box;
 }
 </style>
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="Page événements">
+    <meta name="keywords" content="Students">
+    <meta name="description" content="Page étudiants">
     <title>Events</title>
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
@@ -140,11 +141,12 @@ form {
                 <div class="u-container-layout u-container-layout-10">
                   <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
                     <div class="u-container-layout u-valign-middle u-container-layout-11">
-                      <h1 class="u-align-center u-text u-text-default u-text-1 ">Création d'un nouvel événement</h1>
+                      <h1 class="u-align-center u-text u-text-default u-text-1 ">Création d'un nouvel étudiants</h1>
                     </div>
                   </div>
                   <div class="u-form u-form-1">
-                    <form id = "form_event" method="POST">
+
+                    <form id = "form_student" method="POST">
                       {% csrf_token %}
                       {% for message in messages %}
                             <div class="alert {{ message.tags }} alert-dismissible" role="alert">
@@ -154,39 +156,34 @@ form {
                             </div>
                           {% endfor %}
 
+                      <div><h1><a href="{% url 'index_billets' %}" >Editer ticket</a></h1></div>
+
 
                       <div class="u-form-group u-form-name">
-                        <label for="name-46fd" class="u-label u-label-1">Nom événements</label>
-                        <input type="text" placeholder="Entrez le nom de l'événement" id="name-46fd" name="name_event" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        <label for="name-46fd" class="u-label u-label-1">Nom étudiants</label>
+                        <input type="text" placeholder="Entrez le nom de l'étudiant" id="name-46fd" name="name_student" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                      </div>
+                      <div class="u-form-date u-form-group u-form-group-3">
+                        <label for="name-46fe" class="u-label u-label-3">Prénom étudiant</label>
+                        <input type="text" placeholder="Entrez le prénom de l'étudiant" id="name-46fe" name="surname_student" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
                       </div>
                       <div class="select">
-                        <label for="select-59fe" class="u-label u-label-4">Club organisateur</label>
-                          <select id="select-59fe" name="club_select">
-                              {% for club in clubs %}
-                                <option value="{{ club.id_club }}">{{ club.name_club }}</option>
-                              {% endfor %}
-                          </select>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
-                        </div>
-                      <div class="u-form-date u-form-group u-form-group-3">
-                        <label for="date-357b" class="u-label u-label-3">Date événement</label>
-                        <input type="date" placeholder="MM/DD/YYYY" id="date-357b" name="date_event" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                      </div>
-                      <div class="u-form-date u-form-group u-form-group-4">
-                        <label for="date-921c" class="u-label u-label-4">Durée événement</label>
-                        <input type="number" placeholder="Nombre de jours" id="date-921c" name="duration" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <label for="fields" class="u-label u-label-4">Spécialité</label>
+                        <select name="study_field" id="fields">
+                        <option value="Sciences de la santé">Sciences de la santé</option>
+                        <option value="Ingénierie">Ingénierie</option>
+                        <option value="Business school">Business school</option>
+                        <option value="Droit">Droit</option>
+                        <option value="Hotellerie">Hotellerie</option>
+                        </select>
                       </div>
                       <div class="u-form-group u-form-group-5">
-                        <label for="text-5a90" class="u-label u-label-5">Budget</label>
-                        <input type="number" placeholder="Entrez le budget prévu" id="text-5a90" name="budget" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <label for="text-5a90" class="u-label u-label-5">Email</label>
+                        <input type="email" placeholder="Entrez l'email" id="text-5a90" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                       </div>
                       <div class="u-form-group u-form-group-6">
-                        <label for="text-8990" class="u-label u-label-6">Places disponibles</label>
-                        <input type="number" placeholder="Entrez le nombres de place disponibles" id="text-8990" name="available_places" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                      </div>
-                      <div class="u-form-group u-form-group-6">
-                        <label for="text-8990" class="u-label u-label-6">Prix du ticket</label>
-                        <input type="number" placeholder="Entrez le nombres de place disponibles" id="text-8991" name="ticket_price" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <label for="text-8990" class="u-label u-label-6">Téléphone</label>
+                        <input type="text" placeholder="Entrez le numéro de téléphone" id="text-8990" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                       </div>
                       <div class="u-align-left u-form-group u-form-submit">
                         <a href="" class="u-btn u-btn-submit u-button-style">Soumettre</a>

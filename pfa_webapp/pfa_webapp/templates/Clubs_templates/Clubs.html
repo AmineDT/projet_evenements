@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 <style>
-input[type=text], select {
+input[type=text], input[type=number], input[type=date], input[type=email] {
   width: 160%;
   padding: 18px 20px;
   margin: 8px 0;
@@ -12,15 +12,27 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-input[type=submit] {
-  width: 150%;
-  background-color: #478ac9;
+input, select {
+  width: 160%;
+  background-color: #FFFFFF;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
-  border: none;
-  border-radius: 4px;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
   cursor: pointer;
+}
+input[type=submit] {
+  width: 160%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  color: #FFFFFF;
+  background-color: #478ac9;
+  border: 5px solid #FFFFFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: absolute;
 }
 
 form {
@@ -32,8 +44,8 @@ form {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="Page labels">
+    <meta name="keywords" content="Labels">
+    <meta name="description" content="Page clubs">
     <title>Label</title>
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
@@ -164,7 +176,9 @@ form {
                             <td><b><input type="text" placeholder="Entrez une description du club" name="description" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></td></b>
                          </tr>
                          <tr>
-                            <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
+                            <td colspan="2" align="center"><div class="u-align-left u-form-group u-form-submit">
+                        <a href="" class="u-btn u-btn-submit u-button-style">Soumettre</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden"> </td>
                          </tr>
                         </table>
                       </form>
