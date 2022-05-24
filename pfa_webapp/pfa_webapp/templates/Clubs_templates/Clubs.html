@@ -1,27 +1,55 @@
 {% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
+<style>
+input[type=text], select {
+  width: 160%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 150%;
+  background-color: #478ac9;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form {
+    position: absolute;
+    margin-top: 25%;
+}
+</style>
+<body>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
-    <meta name="description" content="Page événements">
-    <title>Events</title>
+    <meta name="description" content="Page labels">
+    <title>Label</title>
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-    <link rel="stylesheet" href="{% static 'css/Events.css' %}" media="screen">
-    <link id="u-teme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link rel="stylesheet" href="{% static 'css/Label.css' %}" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
     
     <script type="application/ld+json">{
-		"@context": "http://schema.org",
+		"@context": "form",
 		"@type": "Organization",
 		"name": "",
 		"logo": "{% static 'img/logo.png' %}"
-}</script>
+}   </script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Events">
+    <meta property="og:title" content="Label">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-palette-1-light-1 u-header" id="sec-2115"><div class="u-clearfix u-sheet u-sheet-1">
@@ -90,7 +118,7 @@
                           <a href="{% url 'index_clubs' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-5">Clubs</a>
                         </div>
                       </div>
-                      <div class="u-border-index_labels3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-6">
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-6">
                         <div class="u-container-layout u-similar-container u-container-layout-7">
                           <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-6">Membres</a>
                         </div>
@@ -113,61 +141,33 @@
                 <div class="u-container-layout u-container-layout-10">
                   <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
                     <div class="u-container-layout u-valign-middle u-container-layout-11">
-                      <h1 class="u-align-center u-text u-text-default u-text-1 ">Création d'un nouvel événement</h1>
+                      <h1 class="u-align-center u-text u-text-1">Création d'un nouveau club</h1>
                     </div>
                   </div>
                   <div class="u-form u-form-1">
-                    <form id = "form_event" method="POST">
-                      {% csrf_token %}
-                      {% for message in messages %}
+                      <form id = "form_label" method="POST">
+                        {% csrf_token %}
+                          {% for message in messages %}
                             <div class="alert {{ message.tags }} alert-dismissible" role="alert">
                                 <h1 style="color: green" align="center"><b>
                              {{ message }}
                                 </b></h1>
                             </div>
                           {% endfor %}
-
-
-                      <div class="u-form-group u-form-name">
-                        <label for="name-46fd" class="u-label u-label-1">Nom événements</label>
-                        <input type="text" placeholder="Entrez le nom de l'événement" id="name-46fd" name="name_event" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                      </div>
-                      <div class="u-form-group u-form-select u-form-group-2">
-                        <label for="select-59fe" class="u-label u-label-2">Club organisateur</label>
-                        <div class="u-form-select-wrapper">
-                          <select id="select-59fe" name="club_select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                              {% for club in clubs %}
-                                <option value="{{ club.id_club }}">{{ club.name_club }}</option>
-                              {% endfor %}
-                          </select>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
-                        </div>
-                      </div>
-                      <div class="u-form-date u-form-group u-form-group-3">
-                        <label for="date-357b" class="u-label u-label-3">Date événement</label>
-                        <input type="date" placeholder="MM/DD/YYYY" id="date-357b" name="date_event" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                      </div>
-                      <div class="u-form-date u-form-group u-form-group-4">
-                        <label for="date-921c" class="u-label u-label-4">Durée événement</label>
-                        <input type="number" placeholder="Nombre de jours" id="date-921c" name="duration" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                      </div>
-                      <div class="u-form-group u-form-group-5">
-                        <label for="text-5a90" class="u-label u-label-5">Budget</label>
-                        <input type="number" placeholder="Entrez le budget prévu" id="text-5a90" name="budget" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                      </div>
-                      <div class="u-form-group u-form-group-6">
-                        <label for="text-8990" class="u-label u-label-6">Places disponibles</label>
-                        <input type="number" placeholder="Entrez le nombres de place disponibles" id="text-8990" name="available_places" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                      </div>
-                      <div class="u-form-group u-form-group-6">
-                        <label for="text-8990" class="u-label u-label-6">Prix du ticket</label>
-                        <input type="number" placeholder="Entrez le nombres de place disponibles" id="text-8991" name="ticket_price" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                      </div>
-                      <div class="u-align-left u-form-group u-form-submit">
-                        <a href="" class="u-btn u-btn-submit u-button-style">Soumettre</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
-                      </div>
-                    </form>
+                        <table style="width:100%" align="center">
+                         <tr>
+                            <td><b><h3>Intitulé du club</h3></b></td>
+                            <td><b><input type="text" placeholder="Entrez nom du club" name="name_club" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"></td></b>
+                         </tr>
+                         <tr>
+                            <td><b><h3>Description du club</h3></b></td>
+                            <td><b><input type="text" placeholder="Entrez une description du club" name="description" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"></td></b>
+                         </tr>
+                         <tr>
+                            <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
+                         </tr>
+                        </table>
+                      </form>
                   </div>
                 </div>
               </div>
@@ -176,13 +176,11 @@
         </div>
       </div>
     </section>
+
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-102a"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1"> Application de gestion d'événements pour club universitaire</p>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-
-    </section>
   </body>
 </html>

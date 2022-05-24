@@ -3,17 +3,18 @@ import sys
 
 
 sys.path.append("..")
-from labels.models import Label
+from clubs.models import Club
 
 # Create your models here.
 class Events(models.Model):
     id_event = models.AutoField(primary_key=True)
     name_event = models.CharField(max_length=50, unique=True)
-    label = models.ForeignKey('labels.Label', models.DO_NOTHING, db_column='id_label', blank=True, null=True)
+    club = models.ForeignKey('clubs.Club', models.DO_NOTHING, db_column='club', blank=True, null=True)
     date_event = models.DateField(blank=True, null=True)
     duration = models.IntegerField(blank=True, null=True)
     budget = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True)
     available_places = models.IntegerField(blank=True, null=True)
+    ticket_price = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return 'Evénement: ' + self.name_event

@@ -13,7 +13,6 @@ class Tickets(models.Model):
     id_ticket = models.AutoField(primary_key=True)
     id_event = models.ForeignKey(Events, models.DO_NOTHING, db_column='id_event', blank=True, null=True)
     id_student = models.ForeignKey(Students, models.DO_NOTHING, db_column='id_student', blank=True, null=True)
-    ticket_price = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True)
     presence = models.BooleanField(blank=True, null=True)
 
     def __str__(self):

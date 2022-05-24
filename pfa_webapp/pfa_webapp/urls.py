@@ -26,6 +26,7 @@ urlpatterns = [
     path('etudiants/', include('etudiants.urls'), name="etudiants"),
     path('evenements/', include('evenements.urls'), name="evenements"),
     path('labels/', include('labels.urls'), name="labels"),
+    path('clubs/', include('clubs.urls'), name="clubs"),
     path('membres/', include('membres.urls'), name="membres"),
     path('roles/', include('roles.urls'), name="roles"),
     path('tresorerie/', include('tresorerie.urls'), name="tresorerie"),

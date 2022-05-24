@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'etudiants',
     'evenements',
     'labels',
+    'clubs',
     'membres',
     'roles',
     'tresorerie',
