@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<style>
+input[type=text], input[type=number], input[type=date], input[type=email] {
+  width: 160%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input, select {
+  width: 160%;
+  background-color: #FFFFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 5px solid #478ac9;
+  border-radius: 10px;
+  cursor: pointer;
+}
+input[type=submit] {
+  width: 160%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  color: #FFFFFF;
+  background-color: #478ac9;
+  border: 5px solid #FFFFFF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+form {
+    position: absolute;
+    margin-top: 25%;
+}
+</style>
+<body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Labels">
+    <meta name="description" content="Page clubs">
+    <title>Label</title>
+    <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/Label.css' %}" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "form",
+		"@type": "Organization",
+		"name": "",
+		"logo": "{% static 'img/logo.png' %}"
+}   </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Label">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-palette-1-light-1 u-header" id="sec-2115"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="" class="u-image u-logo u-image-1" data-image-width="128" data-image-height="128">
+          <img src="{% static 'img/logo.png' %}" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-2-base" href="../Index.html" style="padding: 10px 20px;">Index</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-2-base" href="../About.html" style="padding: 10px 20px;">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-white u-text-hover-palette-2-base" href="../Contact.html" style="padding: 10px 20px;">Contact</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Index.html">Index</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../About.html">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Contact.html">Contact</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+    <section class="u-clearfix u-section-1" id="sec-f7a7">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-white u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-palette-1-light-1 u-size-12 u-layout-cell-1">
+                <div class="u-border-2 u-border-palette-1-dark-2 u-container-layout u-container-layout-1">
+                  <div class="u-expanded-width u-list u-list-1">
+                    <div class="u-repeater u-repeater-1">
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-1">
+                        <div class="u-container-layout u-similar-container u-container-layout-2">
+                          <a href="{% url 'index_evenements' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-1">Evenements</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-2">
+                        <div class="u-container-layout u-similar-container u-container-layout-3">
+                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-3">
+                        <div class="u-container-layout u-similar-container u-container-layout-4">
+                          <a href="{% url 'index_etudiants' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-3">Etudiants</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-4">
+                        <div class="u-container-layout u-similar-container u-container-layout-5">
+                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-4">Tresorerie</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-5">
+                        <div class="u-container-layout u-similar-container u-container-layout-6">
+                          <a href="{% url 'index_clubs' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-5">Clubs</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-6">
+                        <div class="u-container-layout u-similar-container u-container-layout-7">
+                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-6">Membres</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-7">
+                        <div class="u-container-layout u-similar-container u-container-layout-8">
+                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-7">Utilisateurs</a>
+                        </div>
+                      </div>
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-8">
+                        <div class="u-container-layout u-similar-container u-container-layout-9">
+                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-8">Roles</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-10">
+                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+                    <div class="u-container-layout u-valign-middle u-container-layout-11">
+                      <h1 class="u-align-center u-text u-text-1">Liste des clubs</h1>
+                    </div>
+                  </div>
+                    <div align="center" style="padding-top: 25px">
+                          {% load django_tables2 %}
+{% load i18n %}
+{% block table-wrapper %}
+<div class="table-container">
+    {% block table %}
+        <table {% render_attrs table.attrs class="table" %}>
+            {% block table.thead %}
+            {% if table.show_header %}
+                <thead {{ table.attrs.thead.as_html }}>
+                    <tr>
+                      <th>Suppression</th>
+                    {% for column in table.columns %}
+                        <th {{ column.attrs.th.as_html }}>
+                            {% if column.orderable %}
+                                <a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">{{ column.header }}</a>
+                            {% else %}
+                                {{ column.header }}
+                            {% endif %}
+                        </th>
+                    {% endfor %}
+                    </tr>
+                </thead>
+            {% endif %}
+            {% endblock table.thead %}
+            {% block table.tbody %}
+                <tbody {{ table.attrs.tbody.as_html }}>
+                {% for row in table.paginated_rows %}
+                    {% block table.tbody.row %}
+                    <tr {{ row.attrs.as_html }}>
+                        <td> <a href="">Supprimer</a> </td>
+                        {% for column, cell in row.items %}
+                            <td {{ column.attrs.td.as_html }}>{% if column.localize == None %}{{ cell }}{% else %}{% if column.localize %}{{ cell|localize }}{% else %}{{ cell|unlocalize }}{% endif %}{% endif %}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endblock table.tbody.row %}
+                {% empty %}
+                    {% if table.empty_text %}
+                    {% block table.tbody.empty_text %}
+                        <tr><td colspan="{{ table.columns|length }}">{{ table.empty_text }}</td></tr>
+                    {% endblock table.tbody.empty_text %}
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            {% endblock table.tbody %}
+            {% block table.tfoot %}
+            {% if table.has_footer %}
+                <tfoot {{ table.attrs.tfoot.as_html }}>
+                    <tr>
+                    {% for column in table.columns %}
+                        <td {{ column.attrs.tf.as_html }}>{{ column.footer }}</td>
+                    {% endfor %}
+                    </tr>
+                </tfoot>
+            {% endif %}
+            {% endblock table.tfoot %}
+        </table>
+    {% endblock table %}
+
+    {% block pagination %}
+        {% if table.page and table.paginator.num_pages > 1 %}
+        <nav aria-label="Table navigation">
+            <ul class="pagination">
+            {% if table.page.has_previous %}
+                {% block pagination.previous %}
+                    <li class="previous">
+                        <a href="{% querystring table.prefixed_page_field=table.page.previous_page_number %}">
+                            <span aria-hidden="true">&laquo;</span>
+                            {% trans 'previous' %}
+                        </a>
+                    </li>
+                {% endblock pagination.previous %}
+            {% endif %}
+            {% if table.page.has_previous or table.page.has_next %}
+                {% block pagination.range %}
+                    {% for p in table.page|table_page_range:table.paginator %}
+                        <li {% if p == table.page.number %}class="active"{% endif %}>
+                            {% if p == '...' %}
+                                <a href="#">{{ p }}</a>
+                            {% else %}
+                                <a href="{% querystring table.prefixed_page_field=p %}">
+                                    {{ p }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% endblock pagination.range %}
+            {% endif %}
+
+            {% if table.page.has_next %}
+                {% block pagination.next %}
+                <li class="next">
+                    <a href="{% querystring table.prefixed_page_field=table.page.next_page_number %}">
+                        {% trans 'next' %}
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endblock pagination.next %}
+            {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    {% endblock pagination %}
+</div>
+{% endblock table-wrapper %}
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-102a"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1"> Application de gestion d'événements pour club universitaire</p>
+      </div></footer>
+  </body>
+</html>

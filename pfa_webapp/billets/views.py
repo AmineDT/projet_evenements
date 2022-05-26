@@ -13,7 +13,6 @@ from evenements.models import Events
 
 events = Events.objects.all()
 students = Students.objects.all()
-full_name = Students.objects.filter()
 
 
 def index_billets(request):
