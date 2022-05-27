@@ -1,0 +1,31 @@
+{% extends "Purchases_templates/Purchases_output.html" %}
+
+{% block content %}
+<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-10">
+                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+                    <div class="u-container-layout u-valign-middle u-container-layout-11">
+                      <h1 class="u-align-center u-text u-text-1">Confirmer modification</h1>
+                    </div>
+                  </div>
+                  <div style="padding-top: 25px; align-content: center">
+
+{% url 'achats:all' as list_all %}
+
+<div class="container d-flex justify-content-center mt-5" style="width: 50%;">
+    <div class="col mt-5 text-center">
+        <h1 class="mb-5">Modifier l'achat</h1>
+
+        <p class="h5">Voulez vous modifier l'achat:</p>
+        <h3 class="my-5">{{ "L'article : "|add:purchases.article|add:" facture : "|add:purchases.invoice_number }}</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary btn-lg" value="Modifier" style="margin-right: 30px; margin-top: 30px;">
+            <input type="submit" class="btn btn-danger btn-lg" style="margin-top: 30px;" onclick="window.location='{{list_all}}'; return false;" value="Annuler">
+        </form>
+    </div>
+</div>
+                  </div>
+                </div>
+{% endblock %}

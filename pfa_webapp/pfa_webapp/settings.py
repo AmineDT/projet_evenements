@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_filters',
     'django_tables2',
     'billets',
     'etudiants',
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'clubs',
     'membres',
     'roles',
-    'tresorerie',
+    'achats',
     'utilisateurs',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -119,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'UTC'
 
@@ -138,3 +139,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pfa_webapp\static')]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DATE_INPUT_FORMATS = [
+    '%m/%d/%Y',
+]
+
+LOGIN_REDIRECT_URL = "/"

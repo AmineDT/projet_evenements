@@ -1,0 +1,33 @@
+{% extends "Clubs_templates/Clubs_output.html" %}
+
+{% block content %}
+
+<!-- BOOTSTRAP FORM -->
+<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-10">
+                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+                    <div class="u-container-layout u-valign-middle u-container-layout-11">
+                      <h1 class="u-align-center u-text u-text-1">Ajouter un club</h1>
+                    </div>
+                  </div>
+                  <div style="padding-top: 25px; align-content: center">
+
+
+<div class="container d-flex justify-content-center mt-5">
+    <div class="col mt-5">
+        <form action="" method="post">
+            {% csrf_token %}
+            <table class="table">
+                {{form.as_table}}
+            </table>
+            <input type="submit" class="btn btn-primary btn-lg" value="Enregistrer" style="margin-left: 30%; margin-top: 30px;">
+            <input type="submit" class="btn btn-danger btn-lg" style="margin-top: 30px; margin-left: 10px" onclick="window.location='{% url 'clubs:all' %}'; return false;" value="Annuler">
+        </form> 
+
+    </div>
+</div>
+
+<!-- END BOOTSTRAP FORM -->
+                      </div>
+                </div>
+{% endblock %}

@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
     path('', views.index, name="index"),
     path('contact/', views.contact, name="contact"),
     path('about/', views.about, name="about"),
@@ -28,7 +29,7 @@ urlpatterns = [
     path('clubs/', include('clubs.urls'), name="clubs"),
     path('membres/', include('membres.urls'), name="membres"),
     path('roles/', include('roles.urls'), name="roles"),
-    path('tresorerie/', include('tresorerie.urls'), name="tresorerie"),
+    path('achats/', include('achats.urls'), name="tresorerie"),
     path('utilisateurs/', include('utilisateurs.urls'), name="utilisateurs"),
 
 

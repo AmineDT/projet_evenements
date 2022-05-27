@@ -2,55 +2,35 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 <style>
-input[type=text], input[type=number], input[type=date], input[type=email] {
-  width: 160%;
-  padding: 18px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 5px solid #478ac9;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-input, select {
-  width: 160%;
-  background-color: #FFFFFF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: 5px solid #478ac9;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-form {
-    position: absolute;
-    margin-top: 25%;
-}
-
 </style>
-
+<body>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="keywords" content="Students">
-    <meta name="description" content="Page étudiants">
-    <title>Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=div-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Evénements">
+    <meta name="description" content="Page événements">
+    <title>Clubs</title>
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-    <link rel="stylesheet" href="{% static 'css/Events.css' %}" media="screen">
-    <link id="u-teme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link rel="stylesheet" href="{% static 'css/Label.css' %}" media="screen">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
     
     <script type="application/ld+json">{
-		"@context": "http://schema.org",
+		"@context": "form",
 		"@type": "Organization",
 		"name": "",
 		"logo": "{% static 'img/logo.png' %}"
-}</script>
+}   </script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Events">
+    <meta property="og:title" content="Evénements">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-palette-1-light-1 u-header" id="sec-2115"><div class="u-clearfix u-sheet u-sheet-1">
@@ -85,8 +65,8 @@ form {
           </div>
         </nav>
       </div></header>
-    <section class="u-clearfix u-section-1" id="sec-f7a7">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    <section style="position: relative; margin-bottom: 80%" class="u-clearfix u-section-1" id="sec-f7a7">
+      <div style="position: absolute; height: auto; padding-top: 0%" class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-layout-wrap u-white u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -96,30 +76,30 @@ form {
                     <div class="u-repeater u-repeater-1">
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
-                          <a href="{% url 'index_evenements' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-1">Evenements</a>
+                          <a href="{% url 'evenements:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-1">Evenements</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-2">
                         <div class="u-container-layout u-similar-container u-container-layout-3">
-                          <a href="{% url 'index_billets' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
+                          <a href="{% url 'billets:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-3">
                         <div class="u-container-layout u-similar-container u-container-layout-4">
-                          <a href="{% url 'index_etudiants' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-3">Etudiants</a>
+                          <a href="{% url 'etudiants:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-3">Etudiants</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-4">
                         <div class="u-container-layout u-similar-container u-container-layout-5">
-                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-4">Tresorerie</a>
+                          <a href="{% url 'achats:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-4">Achats</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-5">
                         <div class="u-container-layout u-similar-container u-container-layout-6">
-                          <a href="{% url 'index_clubs' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-5">Clubs</a>
+                          <a href="{% url 'clubs:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-5">Clubs</a>
                         </div>
                       </div>
-                      <div class="u-border-index_labels3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-6">
+                      <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-6">
                         <div class="u-container-layout u-similar-container u-container-layout-7">
                           <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-6">Membres</a>
                         </div>
@@ -138,59 +118,21 @@ form {
                   </div>
                 </div>
               </div>
-              <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-10">
-                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
-                    <div class="u-container-layout u-valign-middle u-container-layout-11">
-                      <h1 class="u-align-center u-text u-text-default u-text-1 ">Edition d'un ticket</h1>
-                    </div>
-                  </div>
-                  <div class="u-form u-form-1">
-                    <form id = "form_student" method="POST">
-                      {% csrf_token %}
-                      {% for message in messages %}
-                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-                                <h1 style="color: green" align="center"><b>
-                             {{ message }}
-                                </b></h1>
-                            </div>
-                          {% endfor %}
 
+                        {% block content %}
+                        {% endblock content %}
 
-                      <div class="select">
-                        <label for="select-59fe21" class="u-label u-label-4">Evénement</label>
-                          <select id="select-59fe21" name="event_select">
-                              {% for event in events %}
-                                <option value="{{ event.id_event }}">{{ event.name_event }}</option>
-                              {% endfor %}
-                          </select>
-                        <div class="select">
-                        <label for="select-59fe22" class="u-label u-label-4">Etudiants</label>
-                          <select id="select-59fe22" name="student_select">
-                              {% for student in students %}
-                                <option value="{{ student.id_student }}">{{ student.name_student|add:" "|add:student.surname_student}}</option>
-                              {% endfor %}
-                          </select>
-                      <div class="u-align-left u-form-group u-form-submit">
-                        <a href="" class="u-btn u-btn-submit u-button-style">Soumettre</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
-                      </div>
-                    </form>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
     
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-102a"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1"> Application de gestion d'événements pour club universitaire</p>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-
-    </section>
   </body>
 </html>

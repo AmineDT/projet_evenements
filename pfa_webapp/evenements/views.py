@@ -1,30 +1,66 @@
-from django.shortcuts import render, get_object_or_404
-from django.shortcuts import render
+from django import forms
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.contrib.admin.widgets import AdminDateWidget
 from .models import Events
-import sys
-from django.contrib import messages
-sys.path.append("..")
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
-from clubs.models import Club
+from django.core import serializers
 
-clubs = Club.objects.all()
+data = serializers.serialize("python", Events.objects.all())
 
 
-def index_evenements(request):
-    if request.method == "POST":
-        name_event = request.POST['name_event']
-        club = Club.objects.filter(pk=request.POST.get('club_select', '')).first()
-        date_event = request.POST['date_event']
-        duration = request.POST['duration']
-        budget = request.POST['budget']
-        available_places = request.POST['available_places']
-        ticket_price = request.POST['ticket_price']
-        data = Events(name_event=name_event, club=club, date_event=date_event, duration=duration, budget=budget,
-                      available_places=available_places, ticket_price=ticket_price)
-        data.save()
-        messages.success(request, 'Evénement ajouté avec succès.')
+class EventBaseView(View):
+    class Meta:
+        model = Events
+        fields = ('name_event', 'club', 'date_event', 'duration', 'budget', 'available_places', 'ticket_price')
+        success_url = reverse_lazy('evenements:all')
 
-        return render(request, 'Events_templates/Events.html')
-    else:
-        return render(request, 'Events_templates/Events.html', {'clubs': clubs})
+
+class EventListView(LoginRequiredMixin, EventBaseView, ListView):
+    model = Events
+    template_name = "Events_templates/event_list.html"
+    paginate_by = 10
+    fields = ('name_event', 'club', 'date_event', 'duration', 'budget', 'available_places', 'ticket_price')
+
+
+class EventCreateView(EventBaseView, CreateView):
+    model = Events
+    template_name = "Events_templates/event_form.html"
+    fields = ('name_event', 'club', 'date_event', 'duration', 'budget', 'available_places', 'ticket_price')
+    def get_form(self):
+        from django.forms.widgets import SelectDateWidget
+        form = super(EventCreateView, self).get_form()
+        form.fields['date_event'].widget = SelectDateWidget()
+        return form
+    def get_success_url(self):
+        return reverse_lazy('evenements:all')
+
+
+class EventDetailView(EventBaseView, DetailView):
+    model = Events
+    template_name = "Events_templates/event_detail.html"
+    fields = ('name_event', 'club', 'date_event', 'duration', 'budget', 'available_places', 'ticket_price')
+    def get_success_url(self):
+        return reverse_lazy('evenements:all')
+
+
+class EventDeleteView(EventBaseView, DeleteView):
+    model = Events
+    template_name = "Events_templates/event_confirm_delete.html"
+    fields = ('name_event', 'club', 'date_event', 'duration', 'budget', 'available_places', 'ticket_price')
+
+    def get_success_url(self):
+        return reverse_lazy('evenements:all')
+
+
+class EventUpdateView(EventBaseView, UpdateView):
+    model = Events
+    template_name = "Events_templates/event_update.html"
+    fields = ('name_event', 'club', 'date_event', 'duration', 'budget', 'available_places', 'ticket_price')
+
+    def get_success_url(self):
+        return reverse_lazy('evenements:all')

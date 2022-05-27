@@ -1,28 +1,55 @@
-from django.shortcuts import render, get_object_or_404
-from django.shortcuts import render
-from .models import Events
-import sys
-from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-sys.path.append("..")
+
+from .models import Tickets
 
 # Create your views here.
-from billets.models import Tickets
-from etudiants.models import Students
-from evenements.models import Events
-
-events = Events.objects.all()
-students = Students.objects.all()
+from django.core import serializers
+data = serializers.serialize( "python", Tickets.objects.all() )
 
 
-def index_billets(request):
-    if request.method == "POST":
-        event = Events.objects.filter(pk=request.POST.get('event_select', '')).first()
-        student = Students.objects.filter(pk=request.POST.get('student_select', '')).first()
-        data = Tickets(id_event=event, id_student=student)
-        data.save()
-        messages.success(request, 'Billet ajouté avec succès.')
+class TicketBaseView(View):
+    class Meta:
+        model = Tickets
+        fields = ("id_event", "id_student")
+        success_url = reverse_lazy('billets:all')
 
-        return render(request, 'Tickets_templates/Tickets.html')
-    else:
-        return render(request, 'Tickets_templates/Tickets.html', {'events': events, 'students': students})
+
+class TicketListView(LoginRequiredMixin, TicketBaseView, ListView):
+    model = Tickets
+    template_name = "Tickets_templates/ticket_list.html"
+    fields = ("id_event", "id_student")
+    paginate_by = 10
+
+
+class TicketCreateView(TicketBaseView, CreateView):
+    model = Tickets
+    template_name = "Tickets_templates/ticket_form.html"
+    fields = ("id_event", "id_student")
+    def get_success_url(self):
+        return reverse_lazy('billets:all')
+
+class TicketDetailView(TicketBaseView, DetailView):
+    model = Tickets
+    template_name = "Tickets_templates/ticket_detail.html"
+    fields = ("id_event", "id_student")
+    def get_success_url(self):
+        return reverse_lazy('billets:all')
+
+class TicketDeleteView(TicketBaseView, DeleteView):
+    model = Tickets
+    template_name = "Tickets_templates/ticket_confirm_delete.html"
+    fields = ("id_event", "id_student")
+    def get_success_url(self):
+        return reverse_lazy('billets:all')
+
+
+class TicketUpdateView(TicketBaseView, UpdateView):
+    model = Tickets
+    template_name = "Tickets_templates/ticket_update.html"
+    fields = ("id_event", "id_student")
+    def get_success_url(self):
+        return reverse_lazy('billets:all')

@@ -1,45 +1,54 @@
-import sys
-from django.shortcuts import render, redirect
-import requests
-import os
-from django.template import RequestContext
-from django.contrib import messages
-import django_tables2 as tables
-from django.views.generic import ListView
-from django_tables2 import SingleTableView
-from requests import request
-from django_tables2.utils import A
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Club
+
+from .models import Clubs
 
 # Create your views here.
+from django.core import serializers
+data = serializers.serialize( "python", Clubs.objects.all() )
 
 
-def index_clubs(request):
-    if request.method == "POST":
-        name_club = request.POST['name_club']
-        description = request.POST['description']
-        data = Club(name_club=name_club, description=description)
-        data.save()
-        messages.success(request, 'Club ajouté avec succès.')
-
-        return render(request, 'Clubs_templates/Clubs.html')
-    else:
-        return render(request, 'Clubs_templates/Clubs.html')
-
-class ClubTable(tables.Table):
+class ClubBaseView(View):
     class Meta:
-        model = Club
-        template_name = "django_tables2/bootstrap.html"
+        model = Clubs
         fields = ("name_club", "description")
+        success_url = reverse_lazy('clubs:all')
 
 
-class ClubListView(SingleTableView):
-    model = Club
-    table_class = ClubTable
-    template_name = "Clubs_templates/Clubs_output.html"
+class ClubListView(LoginRequiredMixin, ClubBaseView, ListView):
+    model = Clubs
+    template_name = "Clubs_templates/club_list.html"
+    fields = ("name_club", "description")
+    paginate_by = 10
+
+class ClubCreateView(ClubBaseView, CreateView):
+    model = Clubs
+    template_name = "Clubs_templates/club_form.html"
+    fields = ("name_club", "description")
+    def get_success_url(self):
+        return reverse_lazy('clubs:all')
+
+class ClubDetailView(ClubBaseView, DetailView):
+    model = Clubs
+    template_name = "Clubs_templates/club_detail.html"
+    fields = ("name_club", "description")
+    def get_success_url(self):
+        return reverse_lazy('clubs:all')
+
+class ClubDeleteView(ClubBaseView, DeleteView):
+    model = Clubs
+    template_name = "Clubs_templates/club_confirm_delete.html"
+    fields = ("name_club", "description")
+    def get_success_url(self):
+        return reverse_lazy('clubs:all')
 
 
-
-
-
+class ClubUpdateView(ClubBaseView, UpdateView):
+    model = Clubs
+    template_name = "Clubs_templates/club_update.html"
+    fields = ("name_club", "description")
+    def get_success_url(self):
+        return reverse_lazy('clubs:all')

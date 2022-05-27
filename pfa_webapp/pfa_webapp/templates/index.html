@@ -63,8 +63,8 @@
           </div>
         </nav>
       </div></header>
-    <section class="u-clearfix u-section-1" id="sec-f7a7">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    <section style="position: relative; margin-bottom: 80%" class="u-clearfix u-section-1" id="sec-f7a7">
+      <div style="position: absolute; height: auto; padding-top: 0%" class="u-clearfix u-sheet u-sheet-1">
         <div class="u-clearfix u-expanded-width u-layout-wrap u-white u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
@@ -74,27 +74,27 @@
                     <div class="u-repeater u-repeater-1">
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-1">
                         <div class="u-container-layout u-similar-container u-container-layout-2">
-                          <a href="{% url 'index_evenements' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-1">Evenements</a>
+                          <a href="{% url 'evenements:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-1">Evenements</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-2">
                         <div class="u-container-layout u-similar-container u-container-layout-3">
-                          <a href="{% url 'index_billets' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
+                          <a href="{% url 'billets:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Billets</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-3">
                         <div class="u-container-layout u-similar-container u-container-layout-4">
-                          <a href="{% url 'index_etudiants' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-3">Etudiants</a>
+                          <a href="{% url 'etudiants:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-3">Etudiants</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-4">
                         <div class="u-container-layout u-similar-container u-container-layout-5">
-                          <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-4">Tresorerie</a>
+                          <a href="{% url 'achats:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-4">Achats</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-5">
                         <div class="u-container-layout u-similar-container u-container-layout-6">
-                          <a href="{% url 'index_clubs' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-5">Clubs</a>
+                          <a href="{% url 'clubs:all' %}" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-5">Clubs</a>
                         </div>
                       </div>
                       <div class="u-border-3 u-border-palette-1-base u-container-style u-list-item u-palette-1-light-3 u-repeater-item u-list-item-6">
@@ -116,14 +116,14 @@
                   </div>
                 </div>
               </div>
-              <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+              <div style="position: absolute; width: auto; padding-left: 20%; margin-left: 20%" class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-10"><!--blog--><!--blog_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/blog_options_json-->
                   <div class="u-blog u-expanded-width u-blog-1">
                     <div class="u-repeater u-repeater-2"><!--blog_post-->
-                      <div class="u-align-center u-blog-post u-container-style u-repeater-item">
-                        <div class="u-container-layout u-similar-container u-container-layout-11"><!--blog_post_header-->
+                      <div u-blog-post u-container-style u-repeater-item">
+                        <div style="position: absolute; width: 120%; text-align: center" u-similar-container u-container-layout-11"><!--blog_post_header-->
                           <h2 class="u-blog-control u-text u-text-1">
-                            <a class="u-post-header-link" href=""><!--blog_post_header_content-->Bienvenue sur notre application<!--/blog_post_header_content--></a>
+                            <a href=""><!--blog_post_header_content-->Bienvenue sur notre application<!--/blog_post_header_content--></a>
                           </h2><!--/blog_post_header--><!--blog_post_content-->
                           <div class="u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content-->Cette application web sert à gérer en back office les différents événements du club de l'édition de ticket à la gestion de trésorerie
                               veuillez cliquer ci-dessous pour en savoir plus<!--/blog_post_content_content--></div><!--/blog_post_content--><!--blog_post_metadata-->
