@@ -33,6 +33,7 @@
             <tbody>
             
                 {% for ticket in tickets_list %}
+                {% if user.club_joined == ticket.id_event.club or user.is_superuser %}
                 <tr>
                     <td class="ml-5 text-center"><a href="{% url 'billets:ticket_detail' ticket.id_ticket %}">{{ticket.id_ticket}}</a></td>
                     <td class="text-center">{{ticket.id_student.name_student|add:" "|add:ticket.id_student.surname_student}}</a></td>
@@ -41,6 +42,7 @@
                     <td><a href="{% url 'billets:ticket_update' ticket.id_ticket %} ">Modifier</a></td>
                     <td><a href="{% url 'billets:ticket_delete' ticket.id_ticket %}">Supprimer</a></td>
                 </tr>
+                {% endif %}
             {% endfor %}
         
             </tbody>

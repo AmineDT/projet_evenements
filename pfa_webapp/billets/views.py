@@ -2,9 +2,11 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+import sys
+sys.path.append("..")
+from evenements.models import Events
 
-
-from .models import Tickets
+from billets.models import Tickets
 
 # Create your views here.
 from django.core import serializers
@@ -29,6 +31,14 @@ class TicketCreateView(TicketBaseView, CreateView):
     model = Tickets
     template_name = "Tickets_templates/ticket_form.html"
     fields = ("id_event", "id_student")
+    def get_form(self, *args, **kwargs):
+        form = super(TicketCreateView, self).get_form(*args, **kwargs)
+        if self.request.user.is_superuser:
+            form.fields['id_event'].queryset = Events.objects.all()
+        else:
+            id_club = self.request.user.club_joined_id
+            form.fields['id_event'].queryset = Events.objects.filter(club_id=id_club)
+        return form
     def get_success_url(self):
         return reverse_lazy('billets:all')
 

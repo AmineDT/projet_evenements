@@ -31,12 +31,14 @@
             <tbody>
             
                 {% for club in clubs_list %}
+                {% if user.club_joined == club or user.is_superuser %}
                 <tr>
                     <td class="ml-5 text-center"><a href="{% url 'clubs:club_detail' club.id_club %}">{{club.name_club}}</a></td>
                     <td class="text-center">{{club.description}}</td>
                     <td><a href="{% url 'clubs:club_update' club.id_club %} ">Modifier</a></td>
                     <td><a href="{% url 'clubs:club_delete' club.id_club %}">Supprimer</a></td>
                 </tr>
+                {% endif %}
             {% endfor %}
         
             </tbody>

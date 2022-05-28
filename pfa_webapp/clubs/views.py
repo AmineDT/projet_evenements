@@ -28,8 +28,10 @@ class ClubCreateView(ClubBaseView, CreateView):
     model = Clubs
     template_name = "Clubs_templates/club_form.html"
     fields = ("name_club", "description")
+
     def get_success_url(self):
         return reverse_lazy('clubs:all')
+
 
 class ClubDetailView(ClubBaseView, DetailView):
     model = Clubs

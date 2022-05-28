@@ -36,6 +36,8 @@
             <tbody>
             
                 {% for event in events_list %}
+                {% if user.club_joined == event.club or user.is_superuser %}
+
                 <tr>
                     <td class="ml-5 text-center"><a href="{% url 'evenements:event_detail' event.id_event %}">{{event.name_event}}</a></td>
                     <td class="text-center">{{event.club}}</td>
@@ -47,6 +49,7 @@
                     <td><a href="{% url 'evenements:event_update' event.id_event %} ">Modifier</a></td>
                     <td><a href="{% url 'evenements:event_delete' event.id_event %}">Supprimer</a></td>
                 </tr>
+                {% endif %}
             {% endfor %}
 
         

@@ -1,14 +1,14 @@
 {% extends "Students_templates/Students_output.html" %}
 
 {% block content %}
-<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2" style="margin-left: 10%">
                 <div class="u-container-layout u-container-layout-10">
                   <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
                     <div class="u-container-layout u-valign-middle u-container-layout-11">
                       <h1 class="u-align-center u-text u-text-1">Liste des étudiants</h1>
                     </div>
                   </div>
-                  <div style="padding-top: 25px; padding-left: 0px">
+                  <div style="padding-top: 25px;">
 
 {% for student in students_list %}
     {% for colname in event.column_set.all  %}
@@ -17,7 +17,7 @@
 {% endfor %}
 
 
-<div class="container d-flex mt-5" style="align-content: center;">
+<div class="container d-flex mt-5" style="position: absolute; margin-left: -7%">
     <div class="col">
         <table class="table table-striped mt-5">
             <thead>

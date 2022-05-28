@@ -2,9 +2,12 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from django.core import serializers
-from .models import Purchases
+from achats.models import Purchases
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+import sys
+sys.path.append("..")
+from clubs.models import Clubs
+from evenements.models import Events
 # Create your views here.
 
 data = serializers.serialize("python", Purchases.objects.all())
@@ -33,6 +36,11 @@ class PurchaseCreateView(PurchaseBaseView, CreateView):
     def get_form(self):
         from django.forms.widgets import SelectDateWidget
         form = super(PurchaseCreateView, self).get_form()
+        if self.request.user.is_superuser:
+            form.fields['id_club'].queryset = Clubs.objects.all()
+        else:
+            form.fields['id_club'].queryset = Clubs.objects.filter(id_club=self.request.user.club_joined_id)
+            form.fields['id_event'].queryset = Events.objects.filter(club_id=self.request.user.club_joined_id)
         form.fields['purchase_date'].widget = SelectDateWidget()
         return form
 

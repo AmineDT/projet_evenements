@@ -36,6 +36,7 @@
             <tbody>
             
                 {% for purchase in purchases_list %}
+                {% if user.club_joined == purchase.id_club or user.is_superuser %}
                 <tr>
                     <td class="ml-5 text-center"><a href="{% url 'achats:purchase_detail' purchase.id_purchase %}">{{purchase.article}}</a></td>
                     <td class="text-center">{{purchase.unitary_cost}}</a></td>
@@ -47,6 +48,7 @@
                     <td><a href="{% url 'achats:purchase_update' purchase.id_purchase %} ">Modifier</a></td>
                     <td><a href="{% url 'achats:purchase_delete' purchase.id_purchase %}">Supprimer</a></td>
                 </tr>
+                {% endif %}
             {% endfor %}
         
             </tbody>
