@@ -2,10 +2,17 @@ from django.db import models
 
 # Create your models here.
 class Students(models.Model):
+    S_FIELDS = (
+        ('Sciences de la santé', ('Sciences de la santé')),
+        ('Ingénierie', ('Ingénierie')),
+        ('Business School', ('Business School')),
+        ('Droit', ('Droit')),
+        ('Management en hôtellerie', ('Management en hôtellerie')),
+    )
     id_student = models.AutoField(primary_key=True)
     name_student = models.CharField(max_length=25, verbose_name="Nom étudiant")
     surname_student = models.CharField(max_length=25, verbose_name="Prénom")
-    study_field = models.CharField(max_length=50, blank=True, null=True, verbose_name="Specialité")
+    study_field = models.CharField(max_length=50, blank=True, null=True, choices=S_FIELDS, verbose_name="Specialité")
     email = models.CharField(max_length=35, blank=True, null=True, verbose_name="Email")
     phone = models.CharField(max_length=15, blank=True, null=True, verbose_name="Téléphone")
 

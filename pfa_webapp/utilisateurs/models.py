@@ -20,7 +20,15 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     club_joined = models.ForeignKey('clubs.Clubs', on_delete=models.CASCADE, blank=True, null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ["password", "is_superuser", "username", "first_name", "last_name"]
+
     objects = UserManager()
+
+    def __str__(self):
+        return 'Utilisateur: ' + self.email
+    def __repr__(self):
+        rep = 'Utilisateur(' + self.username + ',' + self.email + ')'
+        return rep
+
     class Meta:
         verbose_name = 'Utilisateur'
         verbose_name_plural = 'Utilisateurs'

@@ -1,0 +1,57 @@
+{% extends 'Events_templates/Events_output.html' %}
+{% load custom_tags %}
+
+{% block content %}
+<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-10">
+                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+                    <div class="u-container-layout u-valign-middle u-container-layout-11">
+                      <h1 class="u-align-center u-text u-text-1">Liste des billets par événement</h1>
+                    </div>
+                  </div>
+                  <div style="padding-top: 25px; padding-left: 0px">
+
+
+
+<div class="container d-flex mt-5" style="align-content: center;">
+    <div class="col">
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Club</th>
+                    <th class="text-center" scope="col">Nombre billets vendus</th>
+                    <th class="text-center" scope="col">Prix billet</th>
+                    <th class="text-center" scope="col">Billets vendus en dhs</th>
+                    <th class="text-center" scope="col">Achats effectués en dhs</th>
+                    <th class="text-center" scope="col">Budget événement en dhs</th>
+                    <th class="text-center" scope="col">Solde en dhs</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for event in events %}
+            {% if user.club_joined == event.club or user.is_superuser %}
+
+
+                <tr>
+                    <td class="ml-5 text-center">{{event.name_event}}</td>
+                    <td class="ml-5 text-center">{{event|ticketsevents}}</td>
+                    <td class="ml-5 text-center">{{event.ticket_price}}</td>
+                    <td class="ml-5 text-center">{{event|caevents}}</td>
+                    <td class="ml-5 text-center">{{event|purchasessevents}}</td>
+                    <td class="ml-5 text-center">{{event.budget}}</td>
+                    <td class="ml-5 text-center">{{event|soldeevents}}</td>
+
+                </tr>
+
+            {% endif %}
+            {% endfor %}
+
+
+        
+            </tbody>
+        </table>
+
+                      </div>
+                </div>
+{% endblock content %}

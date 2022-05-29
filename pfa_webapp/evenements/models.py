@@ -7,12 +7,19 @@ from clubs.models import Clubs
 class Events(models.Model):
     id_event = models.AutoField(primary_key=True)
     name_event = models.CharField(max_length=50, unique=True, verbose_name="Nom événement")
-    club = models.ForeignKey('clubs.Clubs', models.DO_NOTHING, db_column='club', blank=True, null=True, verbose_name="Club organisateur")
+    club = models.ForeignKey('clubs.Clubs', models.DO_NOTHING, db_column='club', blank=True, null=True, related_name="evenementsClub", verbose_name="Club organisateur")
     date_event = models.DateField(blank=True, null=True,verbose_name="Date événement")
     duration = models.IntegerField(blank=True, null=True, verbose_name="Durée événement")
-    budget = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True, verbose_name="Budget événement")
+    budget = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True, verbose_name="Budget événement (sponsors + administration)")
     available_places = models.IntegerField(blank=True, null=True, verbose_name="Places disponibles")
     ticket_price = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True, verbose_name="Prix billet")
+
+
+    def get_tickets_event(self, Tickets):
+        return Tickets.objects.filter(id_event=self.id_event)
+
+    def calculate(self, queryset):
+        return float((queryset) * self.ticket_price)
 
     def __str__(self):
         return 'Evénement: ' + self.name_event

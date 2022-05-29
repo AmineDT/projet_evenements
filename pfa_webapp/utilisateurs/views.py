@@ -7,3 +7,5 @@ from django.shortcuts import render
 
 def index_utilisateurs(requests):
     return render(requests, "Index.html")
+
+

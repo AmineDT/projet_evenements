@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 from django.core import serializers
 
-data = serializers.serialize("python", Students.objects.all())
+
 
 
 class StudentBaseView(View):
