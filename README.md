@@ -1,7 +1,7 @@
 # Event management back-end web application <br /> Web application back-end de gestion d'événements
 
 
-University project CRUD application of event management / Projet fin d'année sur appli web de gestion d'événements
+University project CRUD application of event management <br /> Projet fin d'année sur appli web de gestion d'événements
 
 
 
