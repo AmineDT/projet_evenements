@@ -1,17 +1,23 @@
+from abc import ABC
+
+from django.core.checks import messages
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from django.core import serializers
 from achats.models import Purchases
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import sys
+
 sys.path.append("..")
 from clubs.models import Clubs
 from evenements.models import Events
+
 # Create your views here.
 
 data = serializers.serialize("python", Purchases.objects.all())
-
 
 
 class PurchaseBaseView(View):
@@ -44,6 +50,12 @@ class PurchaseCreateView(PurchaseBaseView, CreateView):
         form.fields['purchase_date'].widget = SelectDateWidget()
         return form
 
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.owner_obj = self.request.user
+        obj.save
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy('achats:all')
 
@@ -57,7 +69,7 @@ class PurchaseDetailView(PurchaseBaseView, DetailView):
         return reverse_lazy('achats:all')
 
 
-class PurchaseDeleteView(PurchaseBaseView, DeleteView):
+class PurchaseDeleteView(PurchaseBaseView, DeleteView, ABC):
     model = Purchases
     template_name = "Purchases_templates/purchase_confirm_delete.html"
     fields = ("article", "unitary_cost", "quantity", "purchase_date", "invoice_number", "id_club", "id_event")
@@ -65,11 +77,36 @@ class PurchaseDeleteView(PurchaseBaseView, DeleteView):
     def get_success_url(self):
         return reverse_lazy('achats:all')
 
+    def user_passes_test(self, request):
+        if request.user.is_authenticated:
+            self.object = self.get_object()
+            return self.object.owner_obj == request.user
+        return False
+
+    def dispatch(self, request, *args, **kwargs):
+        if not (self.user_passes_test(request) or self.request.user.is_superuser):
+            raise PermissionDenied
+        return super(PurchaseDeleteView, self).dispatch(
+            request, *args, **kwargs)
+
+
 
 class PurchaseUpdateView(PurchaseBaseView, UpdateView):
     model = Purchases
     template_name = "Purchases_templates/purchase_update.html"
     fields = ("article", "unitary_cost", "quantity", "purchase_date", "invoice_number", "id_club", "id_event")
+
+    def user_passes_test(self, request):
+        if request.user.is_authenticated:
+            self.object = self.get_object()
+            return self.object.owner_obj == request.user
+        return False
+
+    def dispatch(self, request, *args, **kwargs):
+        if not (self.user_passes_test(request) or self.request.user.is_superuser):
+            raise PermissionDenied
+        return super(PurchaseUpdateView, self).dispatch(
+            request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse_lazy('achats:all')

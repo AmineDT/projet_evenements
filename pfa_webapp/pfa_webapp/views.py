@@ -34,7 +34,7 @@ def tresorerie(request):
         'events': events,
     }
 
-    return render(request, 'Treasury.html', context)
+    return render(request, 'Treasury_event.html', context)
 
 
 @login_required
@@ -52,5 +52,5 @@ def tresorerie_club(request):
         'events': events,
     }
 
-    return render(request, 'Treasury.html', context)
+    return render(request, 'Treasury_club.html', context)
 

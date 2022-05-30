@@ -1,12 +1,13 @@
-{% extends 'Events_templates/Events_output.html' %}
-{% load custom_tags %}
+{% extends 'Treasury_base.html' %}
+{% load custom_tags_events %}
 
 {% block content %}
 <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-10">
                   <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
                     <div class="u-container-layout u-valign-middle u-container-layout-11">
-                      <h1 class="u-align-center u-text u-text-1">Liste des billets par événement</h1>
+                      <h1 class="u-align-center u-text u-text-1">Tresorerie par événement</h1>
+                        <h2 style="text-align: center"> <a href="{% url 'tresorerie_club' %}">Trésorerie par club</a> </h2>
                     </div>
                   </div>
                   <div style="padding-top: 25px; padding-left: 0px">
@@ -38,7 +39,7 @@
                     <td class="ml-5 text-center">{{event|ticketsevents}}</td>
                     <td class="ml-5 text-center">{{event.ticket_price}}</td>
                     <td class="ml-5 text-center">{{event|caevents}}</td>
-                    <td class="ml-5 text-center">{{event|purchasessevents}}</td>
+                    <td class="ml-5 text-center">{{event|purchasesevents}}</td>
                     <td class="ml-5 text-center">{{event.budget}}</td>
                     <td class="ml-5 text-center">{{event|soldeevents}}</td>
 

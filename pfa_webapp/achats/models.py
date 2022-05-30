@@ -1,5 +1,9 @@
 from django.db import models
 import sys
+from utilisateurs.models import UserProfile
+from simple_history.models import HistoricalRecords
+
+
 sys.path.append("..")
 from clubs.models import Clubs
 from evenements.models import Events
@@ -8,12 +12,15 @@ from evenements.models import Events
 class Purchases(models.Model):
     id_purchase = models.AutoField(primary_key=True)
     article = models.CharField(max_length=50, blank=True, null=True, verbose_name="article")
-    unitary_cost = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True, verbose_name="Coût unitaire")
+    unitary_cost = models.DecimalField(max_digits=30, decimal_places=2, blank=True, null=True, verbose_name="Coût unitaire")
     quantity = models.IntegerField(blank=True, null=True, verbose_name="Quantité")
     purchase_date = models.DateField(blank=True, null=True, verbose_name="Date achat")
     invoice_number = models.CharField(max_length=100, blank=True, null=True, verbose_name="Numéro de facture")
     id_club = models.ForeignKey(Clubs, models.DO_NOTHING, db_column='id_club', verbose_name="Club")
     id_event = models.ForeignKey(Events, models.DO_NOTHING, db_column='id_event', blank=True, null=True, verbose_name="Evénement")
+    owner_obj = models.ForeignKey(UserProfile, models.DO_NOTHING, db_column='owner_obj', blank=True,
+                                  null=True)
+    history = HistoricalRecords()
 
     def __str__(self):
         return 'Achat: ' + self.article
@@ -36,3 +43,4 @@ class Purchases(models.Model):
         db_table = 'purchases'
         verbose_name = 'Achat'
         verbose_name_plural = 'Achats'
+

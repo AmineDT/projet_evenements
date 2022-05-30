@@ -18,8 +18,8 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls"), name = 'accounts'),
+    path('admin/', admin.site.urls, name="urladmin"),
+    path("accounts/", include("django.contrib.auth.urls"), name='accounts'),
     path('', views.index, name="index"),
     path('billets/', include('billets.urls'), name="billets"),
     path('etudiants/', include('etudiants.urls'), name="etudiants"),
