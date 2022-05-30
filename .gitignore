@@ -11,9 +11,9 @@
 # Django ignore list
 
 ##extensions to ignore
-*.log
-*.pot
-*.pyc
+/*.log
+/*.pot
+/*.pyc
 
 ##directories to ignore
-.idea/
+/.idea/
