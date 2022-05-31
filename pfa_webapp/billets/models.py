@@ -5,7 +5,7 @@ sys.path.append("..")
 from etudiants.models import Students
 from evenements.models import Events
 from requests import request
-
+from simple_history.models import HistoricalRecords
 # Create your models here.
 
 
@@ -13,6 +13,8 @@ class Tickets(models.Model):
     id_ticket = models.AutoField(primary_key=True)
     id_event = models.ForeignKey(Events, models.DO_NOTHING, db_column='id_event', blank=True, null=True, related_name="ticketsEvenement", verbose_name="Evénement")
     id_student = models.ForeignKey(Students, models.DO_NOTHING, db_column='id_student', blank=True, null=True, verbose_name="Etudiant")
+
+    history = HistoricalRecords()
 
 
 

@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import PermissionsMixin
+from simple_history.models import HistoricalRecords
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=128)
@@ -22,6 +23,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ["password", "is_superuser", "username", "first_name", "last_name"]
 
     objects = UserManager()
+    history = HistoricalRecords()
 
     def __str__(self):
         return 'Utilisateur: ' + self.email

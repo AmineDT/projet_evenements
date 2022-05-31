@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+from simple_history.models import HistoricalRecords
+
+
 class Students(models.Model):
     S_FIELDS = (
         ('Sciences de la santé', ('Sciences de la santé')),
@@ -15,6 +18,8 @@ class Students(models.Model):
     study_field = models.CharField(max_length=50, blank=True, null=True, choices=S_FIELDS, verbose_name="Specialité")
     email = models.CharField(max_length=35, blank=True, null=True, verbose_name="Email")
     phone = models.CharField(max_length=15, blank=True, null=True, verbose_name="Téléphone")
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return 'Etudiant: ' + self.name_student + ' ' + self.surname_student

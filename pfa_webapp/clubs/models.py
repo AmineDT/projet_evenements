@@ -1,12 +1,14 @@
 from django.db import models
 import django_tables2 as tables
-
+from simple_history.models import HistoricalRecords
 
 # Create your models here.
 class Clubs(models.Model):
     id_club = models.AutoField(primary_key=True)
     name_club = models.CharField(max_length=50, unique=True, verbose_name="Nom club")
     description = models.TextField(null=True, blank=True, verbose_name="Description")
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return 'Club: ' + self.name_club

@@ -1,5 +1,8 @@
 from django.db import models
 import sys
+
+from simple_history.models import HistoricalRecords
+
 sys.path.append("..")
 from clubs.models import Clubs
 
@@ -10,9 +13,12 @@ class Events(models.Model):
     club = models.ForeignKey('clubs.Clubs', models.DO_NOTHING, db_column='club', blank=True, null=True, related_name="evenementsClub", verbose_name="Club organisateur")
     date_event = models.DateField(blank=True, null=True,verbose_name="Date événement")
     duration = models.IntegerField(blank=True, null=True, verbose_name="Durée événement")
-    budget = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True, verbose_name="Budget événement (sponsors + administration)")
+    budget = models.DecimalField(max_digits=30, decimal_places=2, blank=True, null=True, verbose_name="Budget événement (sponsors + administration)")
     available_places = models.IntegerField(blank=True, null=True, verbose_name="Places disponibles")
-    ticket_price = models.DecimalField(max_digits=65535, decimal_places=2, blank=True, null=True, verbose_name="Prix billet")
+    ticket_price = models.DecimalField(max_digits=30, decimal_places=2, blank=True, null=True, verbose_name="Prix billet")
+
+    history = HistoricalRecords()
+
 
 
     def get_tickets_event(self, Tickets):
