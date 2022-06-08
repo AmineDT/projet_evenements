@@ -1,0 +1,44 @@
+{% load i18n updateurl utils static %}
+<link rel="stylesheet" href="{% static 'css/filters_list.css' %}" />
+<form method="GET" id="search_form" style="display: block;">
+  <ul class="nav nav-list">
+    {# Hidden fields #}
+    {% for field in form.hidden_fields %}{{ field }}{% endfor %}
+
+    {# Visible fields #}
+    {% for field in form.visible_fields %}
+      {% if field|is_checkbox %}
+        <label class="aligned_label" for="{{ field.auto_id }}">{{ field }}{{ field.label }}</label>
+      {% elif field.name in stacked_fields %}
+        <li class="field">{{ field }}</li>
+      {% else %}
+        <li class="nav-header">{{ field.label }}</li>
+        <li class="field">{{ field }}</li>
+      {% endif %}
+    {% endfor %}
+
+    {# FilterList #}
+    {% for filter in filters %}
+      <li class="nav-header">{{ filter.label }}</li>
+      {% for choice in filter.choices %}
+        <li id="{{ filter.name }}_{{ choice.value|default:'all' }}_id">
+          <a{% if not choice.is_selected %} href="{% update_query_string with filter.name=choice.value 'page'=1 %}"{% else %} class="selected"{% endif %}>
+            {# If safe_label not define or safe_label is True #}
+            {% if safe_label|default_if_none:True %}
+                {{ choice.label|safe }}
+            {% else %}
+                {{ choice.label }}
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+</form>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#search_form select:not("[data-auto-submit=\'no\']")').change(search_submit);
+    });
+</script>
