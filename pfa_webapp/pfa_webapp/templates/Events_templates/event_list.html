@@ -1,25 +1,26 @@
 {% extends 'Events_templates/Events_output.html' %}
 
 {% block content %}
-<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
+<div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2" >
     <div class="u-container-layout u-container-layout-10">
-        <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+        <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1"
+             style="width: 100%; align-self: center">
             <div class="u-container-layout u-valign-middle u-container-layout-11">
                 <h1 class="u-align-center u-text u-text-1">Liste des événements</h1>
             </div>
         </div>
         <div style="padding-top: 25px; padding-left: 0px">
 
-            {% for event in events_list %}
-            {% for colname in event.column_set.all %}
-            <p>{{colname}}</p>
-            {% endfor %}
-            {% endfor %}
+            <form action="{% url 'evenements:all' %}" method="GET">
+                                    <tr>{{ filter.form.name_event.label }} {{ filter.form.name_event }} {{ filter.form.club.label }} {{ filter.form.club }}</tr>
+                                    <tr><br>{{ filter.form.date_event.label }} {{ filter.form.date_event }}</tr>
+                                <input type="submit" style="width: 100%; background-color: #77aad9; margin-top: 5px"
+                                    value="Rechercher" class="btn btn-success" />
+                                </form>
 
-
-            <div class="container d-flex mt-5" style="align-content: center;">
+            <div class="container d-flex mt-5" style="align-content: center; margin-top: 0px; position: relative">
                 <div class="col">
-                    <table class="table table-striped mt-5">
+                    <table id="eventlist" class="table table-striped mt-5" style="margin-top: 0px; position: relative">
                         <thead>
                         <tr>
                             <th class="text-center" scope="col">Nom événement</th>
@@ -35,7 +36,7 @@
                         </thead>
                         <tbody>
 
-                        {% for event in events_list %}
+                        {% for event in filter.qs %}
                         {% if user.club_joined == event.club or user.is_superuser %}
 
                         <tr>
@@ -50,6 +51,7 @@
                             <td><a href="{% url 'evenements:event_update' event.id_event %} ">Modifier</a></td>
                             <td><a href="{% url 'evenements:event_delete' event.id_event %}">Supprimer</a></td>
                         </tr>
+
                         {% endif %}
                         {% endfor %}
 
@@ -81,4 +83,5 @@
             </div>
         </div>
     </div>
+</div>
     {% endblock content %}

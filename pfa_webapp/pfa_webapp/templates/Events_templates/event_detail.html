@@ -2,43 +2,43 @@
 
 {% block content %}
 <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-10">
-                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
-                    <div class="u-container-layout u-valign-middle u-container-layout-11">
-                      <h1 class="u-align-center u-text u-text-1">Details de l'événement</h1>
-                    </div>
-                  </div>
-                  <div style="padding-top: 25px; align-content: center">
-<div class="container mt-5" style="width: 70%;">
-    <div class="col">
-        <h1 class="text-center">Details événement</h1>
-        <div class="d-flex justify-content-center">
-            <table class="table table-striped mt-5" style="width: 50%">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    {% for label, value in events.get_fields  %}
-                        <tr>
-                            <td>{{label | upper}}</td>
-                            <td>{{value}}</td>
-                        </tr>
-                    {% endfor %}
-                        
-                </tbody>
-            </table>
+    <div class="u-container-layout u-container-layout-10">
+        <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+            <div class="u-container-layout u-valign-middle u-container-layout-11">
+                <h1 class="u-align-center u-text u-text-1">Details de l'événement</h1>
+            </div>
         </div>
+        <div style="padding-top: 25px; align-content: center">
+            <div class="container mt-5" style="width: 70%;">
+                <div class="col">
+                    <h1 class="text-center">Details événement</h1>
+                    <div class="d-flex justify-content-center">
+                        <table class="table table-striped mt-5" style="width: 50%">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-        <div class="d-flex justify-content-center">
-            <a href="{% url 'evenements:all' %}" class="d-block btn btn-primary btn-lg my-5">Retour</a>
+                            {% for label, value in events.get_fields %}
+                            <tr>
+                                <td>{{label | upper}}</td>
+                                <td>{{value}}</td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'evenements:all' %}" class="d-block btn btn-primary btn-lg my-5">Retour</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-        
-</div>
-                      </div>
-                </div>
-{% endblock  %}
+    {% endblock %}

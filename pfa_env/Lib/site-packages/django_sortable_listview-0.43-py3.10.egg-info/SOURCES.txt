@@ -1,0 +1,17 @@
+CHANGELOG.md
+LICENSE.txt
+MANIFEST.in
+README.md
+requirements-dev.txt
+setup.cfg
+setup.py
+django_sortable_listview.egg-info/PKG-INFO
+django_sortable_listview.egg-info/SOURCES.txt
+django_sortable_listview.egg-info/dependency_links.txt
+django_sortable_listview.egg-info/requires.txt
+django_sortable_listview.egg-info/top_level.txt
+sortable_listview/__init__.py
+sortable_listview/views.py
+sortable_listview/static/sortable_listview/bootstrap.min.css
+sortable_listview/templates/sortable_listview/pagination.html
+sortable_listview/templates/sortable_listview/sort_links.html

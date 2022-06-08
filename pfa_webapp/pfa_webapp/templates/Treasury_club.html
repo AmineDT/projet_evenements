@@ -3,52 +3,51 @@
 
 {% block content %}
 <div class="u-container-style u-layout-cell u-size-48 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-10">
-                  <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
-                    <div class="u-container-layout u-valign-middle u-container-layout-11">
-                      <h1 class="u-align-center u-text u-text-1">Trésorerie par club</h1>
-                      <h2 style="text-align: center"> <a href="{% url 'tresorerie' %}">Trésorerie par événement</a> </h2>
-                    </div>
-                  </div>
-                  <div style="padding-top: 25px; padding-left: 0px">
+    <div class="u-container-layout u-container-layout-10">
+        <div class="u-border-3 u-border-palette-1-dark-2 u-container-style u-group u-palette-1-light-1 u-group-1">
+            <div class="u-container-layout u-valign-middle u-container-layout-11">
+                <h1 class="u-align-center u-text u-text-1">Trésorerie par club</h1>
+                <h2 style="text-align: center"><a href="{% url 'tresorerie' %}">Trésorerie par événement</a></h2>
+            </div>
+        </div>
+        <div style="padding-top: 25px; padding-left: 0px">
 
 
-<div class="container d-flex mt-5" style="align-content: center;">
-    <div class="col">
-        <table class="table table-striped mt-5">
-            <thead>
-                <tr>
-                    <th class="text-center" scope="col">Club</th>
-                    <th class="text-center" scope="col">Total billets vendus</th>
-                    <th class="text-center" scope="col">Total budgets alloués par administration + sponsors</th>
-                    <th class="text-center" scope="col">Total charges</th>
-                    <th class="text-center" scope="col">Solde</th>
-                </tr>
-            </thead>
-            <tbody>
+            <div class="container d-flex mt-5" style="align-content: center;">
+                <div class="col">
+                    <table class="table table-striped mt-5">
+                        <thead>
+                        <tr>
+                            <th class="text-center" scope="col">Club</th>
+                            <th class="text-center" scope="col">Total billets vendus</th>
+                            <th class="text-center" scope="col">Total budgets alloués par<br> administration + sponsors</th>
+                            <th class="text-center" scope="col">Total charges</th>
+                            <th class="text-center" scope="col">Solde</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-            {% for club in clubs %}
-            {% if user.club_joined == club or user.is_superuser %}
-
-
-                <tr>
-                    <td class="ml-5 text-center">{{club.name_club}}</td>
-                    <td class="ml-5 text-center">{{club|caclubs}} Dhs</td>
-                    <td class="ml-5 text-center">{{club|budgetsclubs}} Dhs</td>
-                    <td class="ml-5 text-center">{{club|purchasesclubs}} Dhs</td>
-                    <td class="ml-5 text-center">{{club|soldeclubs}} Dhs</td>
-
-                </tr>
-
-            {% endif %}
-            {% endfor %}
+                        {% for club in clubs %}
+                        {% if user.club_joined == club or user.is_superuser %}
 
 
-        
-            </tbody>
-        </table>
+                        <tr>
+                            <td class="ml-5 text-center flex">{{club.name_club}}</td>
+                            <td class="ml-5 text-center flex">{{club|caclubs}} Dhs</td>
+                            <td class="ml-5 text-center flex">{{club|budgetsclubs}} Dhs</td>
+                            <td class="ml-5 text-center flex">{{club|purchasesclubs}} Dhs</td>
+                            <td class="ml-5 text-center flex">{{club|soldeclubs}} Dhs</td>
 
-                      </div>
+                        </tr>
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
                 </div>
+            </div>
 
-{% endblock content %}
+            {% endblock content %}

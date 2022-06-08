@@ -1,9 +1,10 @@
-from django import template
 import sys
+
+from django import template
+
 sys.path.append("..")
 from billets.models import Tickets
 from achats.models import Purchases
-from evenements.models import Events
 from clubs.models import Clubs
 
 register = template.Library()
@@ -14,7 +15,6 @@ clubs = Clubs.objects.all()
 club1 = clubs.get(id_club=11)
 
 
-
 @register.filter(name='caclubs')
 def calculate_club(self):
     events_by_club = self.evenementsClub.all()
@@ -22,6 +22,7 @@ def calculate_club(self):
     for event_by_club in events_by_club:
         result += float(tickets.filter(id_event=event_by_club.id_event).count()) * float(event_by_club.ticket_price)
     return result
+
 
 @register.filter(name='purchasesclubs')
 def sum_purchases_club(self):
@@ -50,7 +51,8 @@ def solde_club(self):
     events_by_club = self.evenementsClub.all()
     result_billet = 0
     for event_by_club in events_by_club:
-        result_billet += float(tickets.filter(id_event=event_by_club.id_event).count()) * float(event_by_club.ticket_price)
+        result_billet += float(tickets.filter(id_event=event_by_club.id_event).count()) * float(
+            event_by_club.ticket_price)
 
     result_budget = 0
     for event_by_club in events_by_club:

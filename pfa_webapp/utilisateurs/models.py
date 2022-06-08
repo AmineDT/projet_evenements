@@ -1,11 +1,9 @@
-import django
-from django.conf import settings
-from django.contrib.auth.models import User
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import UserManager
+from django.db import models
 from simple_history.models import HistoricalRecords
+
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=128)
@@ -27,6 +25,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return 'Utilisateur: ' + self.email
+
     def __repr__(self):
         rep = 'Utilisateur(' + self.username + ',' + self.email + ')'
         return rep
@@ -34,4 +33,3 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Utilisateur'
         verbose_name_plural = 'Utilisateurs'
-

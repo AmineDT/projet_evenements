@@ -36,7 +36,6 @@ class Students(models.Model):
                 for field in self.__class__._meta.fields[1:]
                 ]
 
-
     class Meta:
         managed = False
         db_table = 'students'

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from . import views
 
 urlpatterns = [
@@ -31,7 +32,6 @@ urlpatterns = [
     path('utilisateurs/', include('utilisateurs.urls'), name="utilisateurs"),
     path('tresorerie/', views.tresorerie, name="tresorerie"),
     path('tresorerie_club/', views.tresorerie_club, name="tresorerie_club"),
-
 
 
 ]

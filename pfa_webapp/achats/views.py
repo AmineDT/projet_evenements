@@ -1,15 +1,14 @@
+import sys
 from abc import ABC
 
-from django.core.checks import messages
+from achats.models import Purchases
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import serializers
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from django.core import serializers
-from achats.models import Purchases
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-import sys
 
 sys.path.append("..")
 from clubs.models import Clubs
@@ -32,6 +31,24 @@ class PurchaseListView(LoginRequiredMixin, PurchaseBaseView, ListView):
     context_object_name = 'purchases_list'
     template_name = "Purchases_templates/purchase_list.html"
     paginate_by = 10
+    ordering = '-purchase_date'
+
+    def get_queryset(self):
+        try:
+            a = self.request.GET.get('purchases', )
+        except KeyError:
+            a = None
+        if a:
+            purchases_list = Purchases.objects.filter(
+               Q(article__icontains=a)  | Q(invoice_number__icontains=a)  | Q(id_club__name_club__icontains=a)
+               | Q(id_event__name_event__icontains=a)
+            )
+        else:
+            purchases_list = Purchases.objects.all()
+        return purchases_list
+
+    class Meta:
+        sortable = True
 
 
 class PurchaseCreateView(PurchaseBaseView, CreateView):
@@ -88,7 +105,6 @@ class PurchaseDeleteView(PurchaseBaseView, DeleteView, ABC):
             raise PermissionDenied
         return super(PurchaseDeleteView, self).dispatch(
             request, *args, **kwargs)
-
 
 
 class PurchaseUpdateView(PurchaseBaseView, UpdateView):

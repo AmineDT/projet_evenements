@@ -1,5 +1,6 @@
-from django import template
 import sys
+
+from django import template
 
 sys.path.append("..")
 from billets.models import Tickets
@@ -42,3 +43,4 @@ def calculate_event(self):
 
     return float(tickets.filter(id_event=self.id_event).count()) * float(self.ticket_price) - \
            float(result) + float(self.budget)
+

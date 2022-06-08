@@ -1,6 +1,6 @@
 from django.db import models
-import django_tables2 as tables
 from simple_history.models import HistoricalRecords
+
 
 # Create your models here.
 class Clubs(models.Model):
@@ -30,5 +30,3 @@ class Clubs(models.Model):
         db_table = 'clubs'
         verbose_name = 'Club'
         verbose_name_plural = 'Clubs'
-
-

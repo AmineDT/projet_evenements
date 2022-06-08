@@ -1,15 +1,16 @@
-from django.template.context_processors import request
+import sys
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-import sys
-
-
+from django_filters.views import FilterView
+from django_tables2 import SingleTableMixin
 
 sys.path.append("..")
 from evenements.models import Events
-
+from billets.filters import TicketsFilter
 from billets.models import Tickets
 
 # Create your views here.
@@ -30,6 +31,25 @@ class TicketListView(LoginRequiredMixin, TicketBaseView, ListView):
     template_name = "Tickets_templates/ticket_list.html"
     fields = ("id_event", "id_student")
     paginate_by = 10
+
+    def get_queryset(self):
+        try:
+            a = self.request.GET.get('ticket', )
+        except KeyError:
+            a = None
+        if a:
+            tickets_list = Tickets.objects.filter(
+               Q(id_student__name_student__icontains=a)  | Q(id_event__name_event__icontains=a)
+            )
+        else:
+            tickets_list = Tickets.objects.all()
+        return tickets_list
+
+    class Meta:
+        sortable = True
+
+
+
 
 
 class TicketCreateView(TicketBaseView, CreateView):
@@ -75,5 +95,3 @@ class TicketUpdateView(TicketBaseView, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('billets:all')
-
-

@@ -34,39 +34,31 @@
 
 
                         <tr>
-                            <td class="ml-5 text-center flex">{{event.name_event}}</td>
-                            <td class="ml-5 text-center flex">{{event|ticketsevents}}</td>
-                            <td class="ml-5 text-center">
-                                <div style="display: flex">
-                                    <span>{{event.ticket_price}}&nbsp;</span>
-                                    <span> Dhs</span>
-                                </div>
+                            <td class="ml-5 text-center" style="align-content: center">
+                                {{event.name_event}}
                             </td>
                             <td class="ml-5 text-center">
-                                <div style="display: flex">
-                                    <span>{{event|caevents}}&nbsp;</span>
-                                    <span> Dhs</span>
-                                </div>
+                                {{event|ticketsevents}}
                             </td>
                             <td class="ml-5 text-center">
-                                <div style="display: flex">
-                                    <span>{{event|purchasesevents}}&nbsp;</span>
-                                    <span> Dhs</span>
-                                </div>
+                                {{event.ticket_price}}&nbsp;Dhs
                             </td>
                             <td class="ml-5 text-center">
-                                <div style="display: flex;">
-                                    <span>{{event.budget}}&nbsp;</span>
-                                    <span> Dhs</span>
-                                </div>
-                            </td>
-                            <td class="ml-5 text-center">
-                                <div style="display: flex">
-                                    <span>{{event|soldeevents}}&nbsp;</span>
-                                    <span> Dhs</span>
-                                </div>
-                            </td>
 
+                                <span style="align-self: center">{{event|caevents}}&nbsp;</span>
+                                <span> Dhs</span>
+                            </td>
+                            <td class="ml-5 text-center">
+                                <span>{{event|purchasesevents}}&nbsp;</span>
+                                <span> Dhs</span>
+                            </td>
+                            <td class="ml-5 text-center">
+                                <span>{{event.budget}}&nbsp;</span>
+                                <span> Dhs</span>
+                            </td>
+                            <td class="ml-5 text-center">
+                                <span style="display: flex">{{event|soldeevents}}&nbsp;Dhs</span>
+                            </td>
                         </tr>
 
                         {% endif %}
