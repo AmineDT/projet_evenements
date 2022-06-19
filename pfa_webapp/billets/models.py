@@ -40,5 +40,6 @@ class Tickets(models.Model):
 
     class Meta:
         managed = False
+        db_table = 'tickets'
         verbose_name = 'Billet'
         verbose_name_plural = 'Billets'
