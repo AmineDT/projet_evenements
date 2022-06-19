@@ -27,6 +27,5 @@ class Clubs(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'clubs'
         verbose_name = 'Club'
         verbose_name_plural = 'Clubs'
