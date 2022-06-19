@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'pfa_webapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pfa_db',
-        'USER': 'postgres',
-        'PASSWORD': 'abcd1234',
-        'HOST': '127.0.0.1',
+        'NAME': 'd8kpv6igrtaqm7',
+        'USER': 'sewkroumffgndz',
+        'PASSWORD': '106df3d081e07cc0877aff1bb4c7de90a5385b6eec1e788a59adccfddbfaa542',
+        'HOST': 'ec2-52-71-23-11.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
