@@ -1,12 +1,11 @@
 import sys
+from urllib import request
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from django_filters.views import FilterView
-from django_tables2 import SingleTableMixin
 
 sys.path.append("..")
 from evenements.models import Events
@@ -30,26 +29,30 @@ class TicketListView(LoginRequiredMixin, TicketBaseView, ListView):
     model = Tickets
     template_name = "Tickets_templates/ticket_list.html"
     fields = ("id_event", "id_student")
-    paginate_by = 10
+    ordering = ['id_ticket']
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = TicketsFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
     def get_queryset(self):
         try:
-            a = self.request.GET.get('ticket', )
+            search_request = self.request.GET.get('ticket', )
         except KeyError:
-            a = None
-        if a:
+            search_request = None
+        if search_request:
             tickets_list = Tickets.objects.filter(
-               Q(id_student__name_student__icontains=a)  | Q(id_event__name_event__icontains=a)
+                Q(id_student__name_student__icontains=search_request) | Q(id_student__surname_student__icontains=search_request) | Q(
+                    id_event__name_event__icontains=search_request)
             )
         else:
             tickets_list = Tickets.objects.all()
-        return tickets_list
-
-    class Meta:
-        sortable = True
-
-
-
+        if self.request.user.is_superuser:
+            return tickets_list.order_by('-id_ticket')
+        else:
+            return tickets_list.order_by('-id_ticket').filter(id_event__club=self.request.user.club_joined)
 
 
 class TicketCreateView(TicketBaseView, CreateView):

@@ -2,7 +2,7 @@
 {% load render_table from django_tables2 %}
 {% load bootstrap3 %}
 
-<link href="datagrid.min.css" rel="stylesheet" />
+<link href="datagrid.min.css" rel="stylesheet"/>
 
 
 {% block content %}
@@ -16,21 +16,45 @@
         </div>
         <div style="padding-top: 25px; padding-left: 0px">
 
+            <tr>
+                <th class="text-center" scope="col">
+                    <form id="searchForm" action="{% url 'billets:all' %}" method="get">
+                        <input id="al-search" type="text" style="width: 100%"
+                               placeholder="Rechercher par nom d'étudiant, nom d'événement"
+                               name="ticket" value="{{ request.GET.tickets }}"
+                               class="form-control"/>
+                        <input type="submit" style="width: 100%; background-color: #77aad9"
+                               value="Rechercher" class="btn btn-success"/>
+                    </form>
+                </th>
+            </tr>
 
+            <script>
+                //setup before functions
+                let typingTimer;                //timer identifier
+                let doneTypingInterval = 100;  //time in ms, 5 seconds for example
+                let mySearchInput = document.getElementById('al-search');
+
+                //on keyup, start the countdown
+                mySearchInput.onkeyup = function () {
+                    clearTimeout(typingTimer);
+                    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+                };
+
+                //on keydown, clear the countdown
+                mySearchInput.onkeydown = function () {
+                    clearTimeout(typingTimer);
+                };
+
+                //user is "finished typing," do something
+                function doneTyping() {
+                    //do something
+
+                }
+            </script>
 
             <div class="container d-flex mt-5" style="align-content: center;">
                 <div class="col">
-                    <tr>
-                            <th class="text-center" scope="col">
-                                <form action="{% url 'billets:all' %}" method="get">
-                                <input id="al-search" type="text" placeholder="Rechercher par nom d'étudiant ou par événement"
-                                    name="ticket" value="{{ request.GET.tickets }}"
-                                    class="form-control" />
-                                <input type="submit" style="width: 100%; background-color: #77aad9"
-                                    value="Rechercher" class="btn btn-success" />
-                                </form>
-                            </th>
-                        </tr>
                     <table class="table table-striped mt-5">
                         <thead>
                         <tr>
@@ -45,21 +69,19 @@
                         <tbody>
 
 
-                        {% for ticket in tickets_list %}
-                        {% if user.club_joined == ticket.id_event.club or user.is_superuser %}
+                        {% for ticket in object_list %}
 
                         <tr>
                             <td class="ml-5 text-center"><a href="{% url 'billets:ticket_detail' ticket.id_ticket %}">{{ticket.id_ticket}}</a>
                             </td>
                             <td class="text-center">
                                 {{ticket.id_student.name_student|add:" "|add:ticket.id_student.surname_student}}</a></td>
-
                             <td class="text-center">{{ticket.id_event.name_event}}</td>
                             <td class="text-center">{{ticket.id_event.ticket_price}}</td>
                             <td><a href="{% url 'billets:ticket_update' ticket.id_ticket %} ">Modifier</a></td>
                             <td><a href="{% url 'billets:ticket_delete' ticket.id_ticket %}">Supprimer</a></td>
                         </tr>
-                        {% endif %}
+
                         {% endfor %}
 
                         </tbody>
@@ -89,5 +111,6 @@
             </div>
         </div>
     </div>
+</div>
 
-    {% endblock content %}
+{% endblock content %}

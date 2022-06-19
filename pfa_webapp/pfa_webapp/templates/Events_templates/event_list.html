@@ -37,7 +37,6 @@
                         <tbody>
 
                         {% for event in filter.qs %}
-                        {% if user.club_joined == event.club or user.is_superuser %}
 
                         <tr>
                             <td class="ml-5 text-center"><a href="{% url 'evenements:event_detail' event.id_event %}">{{event.name_event}}</a>
@@ -52,7 +51,6 @@
                             <td><a href="{% url 'evenements:event_delete' event.id_event %}">Supprimer</a></td>
                         </tr>
 
-                        {% endif %}
                         {% endfor %}
 
 

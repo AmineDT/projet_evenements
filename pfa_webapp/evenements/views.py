@@ -1,16 +1,12 @@
 import sys
 from urllib import request
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from django_filters.views import FilterView
-from django_tables2 import RequestConfig
-from django_tables2.templatetags import django_tables2 as tables
 from evenements.models import Events
-from django.db.models import Q
+
 
 from evenements.filters import EventFilter
 
@@ -38,11 +34,14 @@ class EventListView(LoginRequiredMixin, EventBaseView, ListView):
         context['filter'] = EventFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return super(EventListView, self).get_queryset()
+        else:
+            return super(EventListView, self).get_queryset().filter(club=self.request.user.club_joined)
+
     class Meta:
         sortable = True
-
-
-
 
 
 class EventCreateView(EventBaseView, CreateView):
@@ -89,5 +88,3 @@ class EventUpdateView(EventBaseView, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('evenements:all')
-
-
